@@ -1,0 +1,10 @@
+body {
+  --font-unit: 16px;
+  --font-xxs: calc(0.25 * var(--font-unit)); // 4px
+  --font-xs: calc(0.5 * var(--font-unit)); // 8px
+  --font-sm: calc(0.75 * var(--font-unit)); // 12px
+  --font-md: calc(1.25 * var(--font-unit)); // 20px
+  --font-lg: calc(2 * var(--font-unit)); // 32px
+  --font-xl: calc(3.25 * var(--font-unit)); // 52px
+  --font-xxl: calc(5.25 * var(--font-unit)); // 84px
+}

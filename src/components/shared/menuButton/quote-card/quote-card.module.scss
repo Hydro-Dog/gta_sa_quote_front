@@ -1,0 +1,11 @@
+.quote-card-container {
+  background: var(--black);
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    width: 90%;
+    margin: auto;
+  }
+}
