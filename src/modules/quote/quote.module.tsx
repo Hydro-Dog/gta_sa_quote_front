@@ -6,10 +6,12 @@ import styles from "./quote.module.scss";
 export const QuoteModule = () => {
   return (
     <div className={styles["quote-contaier"]}>
-      <div>
-        <QuoteCard></QuoteCard>
+      <div className={styles["content"]}>
+        <div className={styles["quote-card"]}>
+          <QuoteCard></QuoteCard>
+        </div>
 
-        <MenuButton text="Скачать"></MenuButton>
+        <MenuButton text="Сохранить"></MenuButton>
       </div>
     </div>
   );

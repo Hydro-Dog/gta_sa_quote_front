@@ -1,11 +1,41 @@
 .quote-card-container {
+  font-family: "Bank_Gothic";
   background: var(--black);
-  width: 400px;
+  color: var(--primary-light);
+  max-width: 800px;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
 
-  &__image {
-    width: 90%;
-    margin: auto;
-  }
+.quote-image {
+  position: absolute;
+  background: no-repeat url("../../../../assets/images/bg3.jpg");
+  background-position: top center;
+  background-size: 100% auto;
+  width: 90%;
+  height: 500px;
+  margin: auto;
+  filter: brightness(0.4);
+}
+
+.quote-image2 {
+  width: 100%;
+  height: auto;
+  filter: brightness(0.4);
+}
+
+.quote-text {
+  position: absolute;
+  top: 40%;
+  width: 97%;
+  text-align: center;
+  padding: 10px;
+}
+
+.quote-author {
+  position: absolute;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
 }
