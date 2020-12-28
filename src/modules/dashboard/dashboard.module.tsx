@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
-import { MenuButton } from "../../components/shared/menuButton/menu-button/menu-button.component";
+import { SharedMenuButton } from "../../components/shared/menuButton/menu-button/shared-menu-button.component";
+import { AdminModule } from "../admin/admin.module";
 import { QuoteModule } from "../quote/quote.module";
 import styles from "./dashboard.module.scss";
 
@@ -20,6 +21,7 @@ export const DashboardModule = ({ ...props }) => {
               <h3>Please select a topic.</h3>
             </Route>
             <Route path={`${path}quote`} component={QuoteModule}></Route>
+            <Route path={`${path}admin`} component={AdminModule}></Route>
           </Switch>
         </div>
       </div>

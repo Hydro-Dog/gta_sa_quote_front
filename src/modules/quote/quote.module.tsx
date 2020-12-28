@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuButton } from "../../components/shared/menuButton/menu-button/menu-button.component";
+import { SharedMenuButton } from "../../components/shared/menuButton/menu-button/shared-menu-button.component";
 import QuoteCard from "../../components/shared/menuButton/quote-card/quote-card.component";
 import styles from "./quote.module.scss";
 
@@ -11,7 +11,7 @@ export const QuoteModule = () => {
           <QuoteCard></QuoteCard>
         </div>
 
-        <MenuButton text="Сохранить"></MenuButton>
+        <SharedMenuButton text="Сохранить"></SharedMenuButton>
       </div>
     </div>
   );

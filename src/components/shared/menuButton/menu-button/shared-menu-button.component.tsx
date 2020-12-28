@@ -1,6 +1,6 @@
 interface MenuButtonProps {
   text: string;
 }
-export const MenuButton = (props: MenuButtonProps) => {
+export const SharedMenuButton = (props: MenuButtonProps) => {
   return <div>{props.text}</div>;
 };
