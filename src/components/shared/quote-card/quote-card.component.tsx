@@ -1,11 +1,11 @@
 import styles from "./quote-card.module.scss";
-import pic from "../../../../assets/images/bg3.jpg";
+import pic from "../../../assets/images/bg3.jpg";
 import React from "react";
 import { QuoteAuthorComponent } from "../quote-author/quote-author.component";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchQuote } from "../../../../redux/quotes/quote-actions";
-import { QuoteStateInterface } from "../../../../redux/quotes/quotes.types";
+import { fetchQuote } from "../../../redux/quotes/quote-actions";
+import { QuoteStateInterface } from "../../../redux/quotes/quotes.types";
 
 export interface QuoteCardProps {
   quote: QuoteStateInterface;

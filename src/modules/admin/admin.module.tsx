@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./admin.module.scss";
-import { SharedInput } from "../../components/shared/menuButton/input-field/shared-input.component";
-import { Theme } from "../../shared/enums/themes.enum";
-import { SharedSelect } from "../../components/shared/menuButton/select/shared-select.component";
+import { Switch, useRouteMatch, Link } from "react-router-dom";
 
 export const AdminModule = () => {
+  let { path } = useRouteMatch();
+
   const nameChanged = (e: string) => {
     console.log("parent name e: ", e);
   };
@@ -18,7 +18,27 @@ export const AdminModule = () => {
   };
   return (
     <div className={styles["admin-contaier"]}>
+      <div className={styles["navigaiton"]}>
+        <div>
+          <Link to={`${path}/quotelist`}>Цитаты</Link>
+        </div>
+        <div>
+          <Link to={`${path}/characterlist`}>Персонажи</Link>
+        </div>
+      </div>
       <div>
+        <Switch>
+          {/* <Route
+            path={`${path}quotelist`}
+            component={QuoteListComponent}
+          ></Route>
+          <Route
+            path={`${path}characterlist`}
+            component={CharacterListComponent}
+          ></Route> */}
+        </Switch>
+      </div>
+      {/* <div>
         Name:
         <SharedInput theme={Theme.dark} parentCb={nameChanged}></SharedInput>
       </div>
@@ -32,7 +52,7 @@ export const AdminModule = () => {
           parentCb={authorChanged}
           options={[1, 2, 3, 4, 5]}
         ></SharedSelect>
-      </div>
+      </div> */}
     </div>
   );
 };

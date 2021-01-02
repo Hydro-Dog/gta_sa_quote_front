@@ -1,12 +1,11 @@
 import React from "react";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
-import { SharedMenuButton } from "../../components/shared/menuButton/menu-button/shared-menu-button.component";
 import { AdminModule } from "../admin/admin.module";
 import { QuoteModule } from "../quote/quote.module";
 import styles from "./dashboard.module.scss";
 
 export const DashboardModule = ({ ...props }) => {
-  let { path, url } = useRouteMatch();
+  let { path } = useRouteMatch();
   return (
     <div className={styles["dashboard"]}>
       <div className={styles["leftbar"]}>

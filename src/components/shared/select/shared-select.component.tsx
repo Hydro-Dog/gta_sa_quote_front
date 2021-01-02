@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Theme } from "../../../../shared/enums/themes.enum";
+import { Theme } from "../../../shared/enums/themes.enum";
 import styles from "./shared-select.module.scss";
 
 interface SharedSelectProps {
@@ -27,17 +27,16 @@ export const SharedSelect = (props: SharedSelectProps) => {
   };
 
   return (
-    <div className={styles["input-container"]}>
-      <div
-        onClick={dropdownToggle}
-        className={`${styles[getComputedStyle(props.theme)]}`}
-      >
-        {selectedOtion}
-      </div>
+    <div className={`${styles[getComputedStyle(props.theme)]}`}>
+      <div onClick={dropdownToggle}>{selectedOtion}</div>
       <div>
         {isOpen ? (
           props.options.map((option: any) => (
-            <div onClick={(e) => optionSelected(option)} key={option}>
+            <div
+              className={styles["option"]}
+              onClick={(e) => optionSelected(option)}
+              key={option}
+            >
               {option}
             </div>
           ))

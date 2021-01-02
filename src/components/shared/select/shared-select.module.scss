@@ -1,0 +1,13 @@
+.dark {
+  background: var(--black);
+  color: var(--white);
+
+  .option:hover {
+    background: var(--black-lighter);
+  }
+}
+
+.light {
+  background: var(--white);
+  color: var(--black);
+}

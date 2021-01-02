@@ -1,4 +1,4 @@
-import { Theme } from "../../../../shared/enums/themes.enum";
+import { Theme } from "../../../shared/enums/themes.enum";
 import styles from "./shared-input.module.scss";
 
 interface SharedInputProps {
