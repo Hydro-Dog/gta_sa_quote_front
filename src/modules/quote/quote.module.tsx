@@ -11,7 +11,7 @@ export const QuoteModule = () => {
           <QuoteCard></QuoteCard>
         </div>
 
-        <SharedMenuButton text="Сохранить"></SharedMenuButton>
+        {/* <SharedMenuButton text="Сохранить"></SharedMenuButton> */}
       </div>
     </div>
   );

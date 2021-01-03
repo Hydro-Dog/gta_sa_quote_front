@@ -1,9 +1,12 @@
 import React from "react";
 import styles from "./admin.module.scss";
-import { Switch, useRouteMatch, Link } from "react-router-dom";
+import { Switch, useRouteMatch, Link, Route } from "react-router-dom";
+import CharacterListComponent from "../../components/character-list/character-list.component";
+import { QuoteListComponent } from "../../components/quote-list/quote-list.component";
 
 export const AdminModule = () => {
   let { path } = useRouteMatch();
+  console.log("path: ", path);
 
   const nameChanged = (e: string) => {
     console.log("parent name e: ", e);
@@ -28,14 +31,14 @@ export const AdminModule = () => {
       </div>
       <div>
         <Switch>
-          {/* <Route
-            path={`${path}quotelist`}
+          <Route
+            path={`${path}/quotelist`}
             component={QuoteListComponent}
           ></Route>
           <Route
-            path={`${path}characterlist`}
+            path={`${path}/characterlist`}
             component={CharacterListComponent}
-          ></Route> */}
+          ></Route>
         </Switch>
       </div>
       {/* <div>

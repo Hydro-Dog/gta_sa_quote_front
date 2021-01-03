@@ -3,7 +3,7 @@ import { Theme } from "../../../shared/enums/themes.enum";
 import styles from "./shared-select.module.scss";
 
 interface SharedSelectProps {
-  theme: Theme;
+  theme?: Theme;
   value?: string;
   options: any;
   parentCb: any;
@@ -18,8 +18,8 @@ export const SharedSelect = (props: SharedSelectProps) => {
     setIsOpen(false);
     props.parentCb(option);
   };
-  const getComputedStyle = (theme: Theme) => {
-    return theme === Theme.dark ? "dark" : "light";
+  const getComputedStyle = (theme: Theme | undefined) => {
+    return theme === Theme.dark || !theme ? "dark" : "light";
   };
 
   const dropdownToggle = () => {

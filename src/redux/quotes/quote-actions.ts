@@ -17,10 +17,12 @@ export const fetchQuoteFailure = (error: any) => {
 
 export const fetchQuote = () => {
   return (dispatch: any) => {
+    console.log("fetchQuote:");
     dispatch(fetchQuoteRequest());
     axios
       .get("http://localhost:5000/api/quote/random")
       .then((res: any) => {
+        console.log("res: ", res);
         const quote = res.data;
         dispatch(fetchQuoteSuccess(quote));
       })

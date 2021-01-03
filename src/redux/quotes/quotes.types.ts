@@ -1,4 +1,4 @@
-import { QuoteAuthorInterface } from "../quoteAuthors/quotes-authors.types";
+import { CharacterInterface } from "../characters/characters.types";
 
 export enum QuotesTypes {
   FETCH_QUOTE_REQUEST = "FETCH_QUOTE_REQUEST",
@@ -17,5 +17,5 @@ export interface QuoteInterface {
   text: string;
   updated: string;
   created: string;
-  author: QuoteAuthorInterface;
+  author: CharacterInterface;
 }

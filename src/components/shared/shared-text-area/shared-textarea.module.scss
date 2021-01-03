@@ -1,0 +1,19 @@
+.texarea-container {
+  textarea {
+    border: none;
+    font-size: var(--font-md);
+    width: 100% !important;
+    height: 100% !important;
+    resize: none;
+  }
+}
+
+.dark {
+  background: var(--black);
+  color: var(--white);
+}
+
+.light {
+  background: var(--white);
+  color: var(--black);
+}
