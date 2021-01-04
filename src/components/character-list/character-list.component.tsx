@@ -1,20 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { uploadCharacter } from "../../redux/characters/characters.actions";
-import { CharacterInterface } from "../../redux/characters/characters.types";
+import {
+  fetchCharacters,
+  uploadCharacter,
+} from "../../redux/characters/characters.actions";
+import {
+  CharacterInterface,
+  CharacterListStateInterface,
+} from "../../redux/characters/characters.types";
 import { SharedInput } from "../shared/input-field/shared-input.component";
 import { SharedMenuButton } from "../shared/menu-button/shared-menu-button.component";
 import CryptoJS from "crypto";
 
 interface CharacterListProps {
   uploadCharacter: any;
+  fetchCharacters: any;
+
+  characterListState: CharacterListStateInterface;
 }
 
-const CharacterListComponent = ({ uploadCharacter }: CharacterListProps) => {
+const CharacterListComponent = ({
+  uploadCharacter,
+  fetchCharacters,
+  characterListState,
+}: CharacterListProps) => {
   const [image, setFile] = useState<any>();
   const [name, setName] = useState<string>("");
 
-  useEffect(() => {}, [image]);
+  useEffect(() => {
+    fetchCharacters();
+    console.log("characterListState: ", characterListState);
+  }, [characterListState.isLoading, image]);
 
   const handleImageChange = (e: any) => {
     let reader = new FileReader();
@@ -53,13 +69,30 @@ const CharacterListComponent = ({ uploadCharacter }: CharacterListProps) => {
         text="Добавить"
         parentCb={uploadClicked}
       ></SharedMenuButton>
+      <div id="list">
+        list
+        {characterListState.isLoading ? (
+          <h3>Loading</h3>
+        ) : (
+          characterListState.characterList.map(
+            (character: CharacterInterface, idx) => {
+              return (
+                <div key={character.id}>
+                  <div>{character.name}</div>
+                  <img src={window.atob(character.image)} />
+                </div>
+              );
+            }
+          )
+        )}
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = (state: any) => {
   return {
-    characterList: state.characterList,
+    characterListState: state.characterList,
   };
 };
 
@@ -67,6 +100,7 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     uploadCharacter: (body: CharacterInterface) =>
       dispatch(uploadCharacter(body)),
+    fetchCharacters: () => dispatch(fetchCharacters()),
   };
 };
 

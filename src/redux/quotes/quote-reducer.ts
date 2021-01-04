@@ -21,7 +21,7 @@ const reducer = (
       return { quote: {}, isLoding: false, error: action.payload };
     }
     default:
-      return { state };
+      return { ...state };
   }
 };
 
