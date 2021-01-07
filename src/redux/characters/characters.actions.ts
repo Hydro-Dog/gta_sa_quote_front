@@ -25,9 +25,20 @@ export const fetchCharactersFailure = (error: any) => {
   return { type: CharacterTypes.FETCH_CHARACTERS_FAILURE, payload: error };
 };
 
+export const removeCharacterRequest = () => {
+  return { type: CharacterTypes.REMOVE_CHARACTER_REQUEST };
+};
+
+export const removeCharacterSuccess = (id: string) => {
+  return { type: CharacterTypes.REMOVE_CHARACTER_SUCCESS, payload: id };
+};
+
+export const removeCharacterFailure = (error: any) => {
+  return { type: CharacterTypes.REMOVE_CHARACTER_FAILURE, payload: error };
+};
+
 export const uploadCharacter = (body: CharacterInterface) => {
   return (dispatch: any) => {
-    console.log("body: ", body);
     dispatch(uploadCharacterRequest());
     axios
       .post("http://localhost:5000/api/character", body)
@@ -54,6 +65,22 @@ export const fetchCharacters = () => {
       .catch((err: any) => {
         const errorMessage = err.message;
         dispatch(fetchCharactersFailure(errorMessage));
+      });
+  };
+};
+
+export const removeCharacter = (id: number) => {
+  return (dispatch: any) => {
+    dispatch(removeCharacterRequest());
+    axios
+      .delete(`${process.env.REACT_APP_HOST}/character/${id}`)
+      .then((res: any) => {
+        const id = res.data.character;
+        dispatch(removeCharacterSuccess(id));
+      })
+      .catch((err: any) => {
+        const errorMessage = err.message;
+        dispatch(removeCharacterFailure(errorMessage));
       });
   };
 };

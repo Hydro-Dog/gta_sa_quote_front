@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import styles from "./character-list.module.scss";
+import { connect, useSelector } from "react-redux";
 import {
   fetchCharacters,
+  removeCharacter,
   uploadCharacter,
 } from "../../redux/characters/characters.actions";
 import {
@@ -10,11 +12,12 @@ import {
 } from "../../redux/characters/characters.types";
 import { SharedInput } from "../shared/input-field/shared-input.component";
 import { SharedMenuButton } from "../shared/menu-button/shared-menu-button.component";
-import CryptoJS from "crypto";
+import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 
 interface CharacterListProps {
   uploadCharacter: any;
   fetchCharacters: any;
+  removeCharacter: any;
 
   characterListState: CharacterListStateInterface;
 }
@@ -22,15 +25,19 @@ interface CharacterListProps {
 const CharacterListComponent = ({
   uploadCharacter,
   fetchCharacters,
+  removeCharacter,
   characterListState,
 }: CharacterListProps) => {
   const [image, setFile] = useState<any>();
   const [name, setName] = useState<string>("");
 
   useEffect(() => {
+    console.log(
+      "characterListState.characterList:",
+      characterListState.characterList
+    );
     fetchCharacters();
-    console.log("characterListState: ", characterListState);
-  }, [characterListState.isLoading, image]);
+  }, []);
 
   const handleImageChange = (e: any) => {
     let reader = new FileReader();
@@ -48,7 +55,6 @@ const CharacterListComponent = ({
 
   const uploadClicked = () => {
     if (name && image) {
-      console.log(window.btoa(image));
       uploadCharacter({ name, image: window.btoa(image) });
     } else {
       console.log("Fill all the fields");
@@ -77,9 +83,23 @@ const CharacterListComponent = ({
           characterListState.characterList.map(
             (character: CharacterInterface, idx) => {
               return (
-                <div key={character.id}>
+                <div
+                  className={styles["character-container"]}
+                  key={character.id}
+                >
                   <div>{character.name}</div>
-                  <img src={window.atob(character.image)} />
+                  <div className={styles["image-container"]}>
+                    <img
+                      className={styles["character-image"]}
+                      src={window.atob(character?.image)}
+                    />
+                  </div>
+                  <div
+                    onClick={() => removeCharacter(character.id)}
+                    className={styles["character-remove"]}
+                  >
+                    <ClearRoundedIcon></ClearRoundedIcon>
+                  </div>
                 </div>
               );
             }
@@ -101,6 +121,7 @@ const mapDispatchToProps = (dispatch: any) => {
     uploadCharacter: (body: CharacterInterface) =>
       dispatch(uploadCharacter(body)),
     fetchCharacters: () => dispatch(fetchCharacters()),
+    removeCharacter: (id: number) => dispatch(removeCharacter(id)),
   };
 };
 
