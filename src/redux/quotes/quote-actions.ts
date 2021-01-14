@@ -32,3 +32,59 @@ export const fetchQuote = () => {
       });
   };
 };
+
+export const uploadQuoteRequest = () => {
+  return { type: QuotesTypes.REMOVE_QUOTE_REQUEST };
+};
+
+export const uploadQuoteSuccess = (quote: QuoteInterface) => {
+  return { type: QuotesTypes.REMOVE_QUOTE_SUCCESS, payload: quote };
+};
+
+export const uploadQuoteFailure = (err: any) => {
+  return { type: QuotesTypes.REMOVE_QUOTE_FAILURE, payload: err };
+};
+
+export const uploadQuote = (quote: QuoteInterface) => {
+  return (dispatch: any) => {
+    dispatch(uploadQuoteRequest());
+    axios
+      .post(`http://localhost:5000/api/quote`)
+      .then((res: any) => {
+        const quote = res.data;
+        dispatch(uploadQuoteSuccess(quote));
+      })
+      .catch((err: any) => {
+        const errorMessage = err.message;
+        dispatch(uploadQuoteFailure(errorMessage));
+      });
+  };
+};
+
+export const removeQuoteRequest = () => {
+  return { type: QuotesTypes.REMOVE_QUOTE_REQUEST };
+};
+
+export const removeQuoteSuccess = (id: number) => {
+  return { type: QuotesTypes.REMOVE_QUOTE_SUCCESS, payload: id };
+};
+
+export const removeQuoteFailure = (err: any) => {
+  return { type: QuotesTypes.REMOVE_QUOTE_FAILURE, payload: err };
+};
+
+export const removeQuote = (id: number) => {
+  return (dispatch: any) => {
+    dispatch(removeQuoteRequest());
+    axios
+      .delete(`http://localhost:5000/api/quote/${id}`)
+      .then((res: any) => {
+        const quote = res.data;
+        dispatch(removeQuoteSuccess(quote));
+      })
+      .catch((err: any) => {
+        const errorMessage = err.message;
+        dispatch(removeQuoteFailure(errorMessage));
+      });
+  };
+};

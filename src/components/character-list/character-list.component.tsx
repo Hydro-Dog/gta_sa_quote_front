@@ -6,20 +6,18 @@ import {
   removeCharacter,
   uploadCharacter,
 } from "../../redux/characters/characters.actions";
-import {
-  CharacterInterface,
-  CharacterListStateInterface,
-} from "../../redux/characters/characters.types";
+import { CharacterInterface } from "../../redux/characters/characters.types";
 import { SharedInput } from "../shared/input-field/shared-input.component";
 import { SharedMenuButton } from "../shared/menu-button/shared-menu-button.component";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
+import { initialCharacterListStateInterface } from "../../redux/characters/characters.reducer";
 
 interface CharacterListProps {
   uploadCharacter: any;
   fetchCharacters: any;
   removeCharacter: any;
 
-  characterListState: CharacterListStateInterface;
+  characterListState: initialCharacterListStateInterface;
 }
 
 const CharacterListComponent = ({
@@ -32,10 +30,6 @@ const CharacterListComponent = ({
   const [name, setName] = useState<string>("");
 
   useEffect(() => {
-    console.log(
-      "characterListState.characterList:",
-      characterListState.characterList
-    );
     fetchCharacters();
   }, []);
 
@@ -76,7 +70,6 @@ const CharacterListComponent = ({
         parentCb={uploadClicked}
       ></SharedMenuButton>
       <div id="list">
-        list
         {characterListState.isLoading ? (
           <h3>Loading</h3>
         ) : (

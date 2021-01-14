@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./admin.module.scss";
 import { Switch, useRouteMatch, Link, Route } from "react-router-dom";
 import CharacterListComponent from "../../components/character-list/character-list.component";
-import { QuoteListComponent } from "../../components/quote-list/quote-list.component";
+import QuoteListComponent from "../../components/quote-list/quote-list.component";
 
 export const AdminModule = () => {
   let { path } = useRouteMatch();

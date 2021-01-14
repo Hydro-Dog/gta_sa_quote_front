@@ -1,18 +1,18 @@
 import { CharacterInterface, CharacterTypes } from "./characters.types";
 
-interface initialStateInterface {
-  isLodaing: boolean;
+export interface initialCharacterListStateInterface {
+  isLoading: boolean;
   characterList: any[];
   error: string;
 }
-const initialState: initialStateInterface = {
-  isLodaing: false,
+const initialCharcterListState: initialCharacterListStateInterface = {
+  isLoading: false,
   characterList: [],
   error: "",
 };
 
 export const characterListReducer = (
-  state = initialState,
+  state = initialCharcterListState,
   action: { type: string; payload: any }
 ) => {
   switch (action.type) {

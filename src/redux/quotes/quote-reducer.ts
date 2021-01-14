@@ -1,13 +1,18 @@
-import { QuotesTypes } from "./quotes.types";
+import { QuoteInterface, QuotesTypes } from "./quotes.types";
 
-const initialState = {
+export interface initialQuoteStateInterface {
+  isLodaing: boolean;
+  quote: QuoteInterface;
+  error: string;
+}
+const initialQuoteState = {
   isLodaing: false,
   quote: {},
   error: "",
 };
 
 const reducer = (
-  state = initialState,
+  state = initialQuoteState,
   action: { type: string; payload: any }
 ) => {
   switch (action.type) {
