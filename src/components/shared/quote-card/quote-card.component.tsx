@@ -1,5 +1,5 @@
 import styles from "./quote-card.module.scss";
-import pic from "../../../assets/images/bg3.jpg";
+import pic from "../../../assets/images/bg5.jpg";
 import React from "react";
 import { QuoteAuthorComponent } from "../quote-author/quote-author.component";
 import { useEffect } from "react";

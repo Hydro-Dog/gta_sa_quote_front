@@ -13,7 +13,10 @@ export const QuoteAuthorComponent = (props: QuoteAuthorProps) => {
         {props.author?.name}
       </div>
       <div className={styles["quote-author-container__pic"]}>
-        <img src={pic} />
+        <img
+          className={styles["character-image"]}
+          src={props?.author && window.atob(props?.author?.image)}
+        />
       </div>
     </div>
   );

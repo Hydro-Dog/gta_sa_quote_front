@@ -8,21 +8,21 @@
   position: relative;
 }
 
-.quote-image {
-  position: absolute;
-  background: no-repeat url("../../../assets/images/bg3.jpg");
-  background-position: top center;
-  background-size: 100% auto;
-  width: 90%;
-  height: 500px;
-  margin: auto;
-  filter: brightness(0.4);
-}
+// .quote-image {
+//   position: absolute;
+//   background: no-repeat url("../../../assets/images/bg3.jpg");
+//   background-position: top center;
+//   background-size: 100% auto;
+//   width: 90%;
+//   height: 500px;
+//   margin: auto;
+//   filter: brightness(0.4);
+// }
 
 .quote-image2 {
   width: 100%;
   height: auto;
-  filter: brightness(0.4);
+  filter: brightness(0.3) blur(1px);
 }
 
 .quote-text {
