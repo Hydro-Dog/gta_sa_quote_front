@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchCharacters } from "../../redux/characters/characters.actions";
 import { initialCharacterListStateInterface } from "../../redux/characters/characters.reducer";
@@ -14,6 +14,7 @@ import {
   QuoteStateInterface,
 } from "../../redux/quotes/quotes.types";
 import { SharedInput } from "../shared/input-field/shared-input.component";
+import { SharedMenuButton } from "../shared/menu-button/shared-menu-button.component";
 import { SharedSelect } from "../shared/select/shared-select.component";
 import { SharedTextarea } from "../shared/shared-text-area/shared-textarea.component";
 
@@ -35,17 +36,35 @@ const QuoteListComponent = ({
   initialQuoteState,
   initialCharcterListState,
 }: QuoteListProps) => {
+  const [quote, setQuote] = useState<string>();
+  const [character, setCharacter] = useState<{ value: string; id: number }>(
+    initialCharcterListState.characterList[0]
+  );
+
   useEffect(() => {
     fetchCharacters();
   }, []);
 
   const quoteTextChanged = (text: string) => {
+    setQuote(text);
     console.log("tex: ", text);
   };
 
-  const characterSelected = (text: string) => {
-    console.log("tex: ", text);
+  const characterSelected = (character: { value: string; id: number }) => {
+    setCharacter(character);
+    console.log("character: ", character);
   };
+
+  const uploadClicked = () => {
+    console.log("character: ", character);
+    console.log("quote: ", quote);
+    if (quote && character) {
+      uploadQuote({ text: quote, authorId: character.id });
+    } else {
+      console.log("Fill all the fields");
+    }
+  };
+
   return (
     <div>
       <div id="list">
@@ -65,13 +84,21 @@ const QuoteListComponent = ({
       </div>
       <SharedTextarea parentCb={quoteTextChanged}></SharedTextarea>
       {initialCharcterListState.characterList.length ? (
-        <SharedSelect
-          options={initialCharcterListState.characterList.map((character) => ({
-            value: character.name,
-            id: character.id,
-          }))}
-          parentCb={characterSelected}
-        ></SharedSelect>
+        <div>
+          <SharedSelect
+            options={initialCharcterListState.characterList.map(
+              (character) => ({
+                value: character.name,
+                id: character.id,
+              })
+            )}
+            parentCb={characterSelected}
+          ></SharedSelect>
+          <SharedMenuButton
+            text="Добавить"
+            parentCb={uploadClicked}
+          ></SharedMenuButton>
+        </div>
       ) : (
         <div></div>
       )}
@@ -90,14 +117,15 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     fetchCharacters: () => dispatch(fetchCharacters()),
+    uploadQuote: (quoteBody: QuoteInterface) =>
+      dispatch(uploadQuote(quoteBody)),
   };
 
-  // return {
-  //   fetchQuote: () => dispatch(fetchQuote()),
-  //   uploadQuote: (body: QuoteInterface) => dispatch(uploadQuote(body)),
-  //   removeQuote: (id: number) => dispatch(removeQuote(id)),
-  //   fetchCharacters: () => dispatch(fetchCharacters()),
-  // };
+  return {
+    fetchQuote: () => dispatch(fetchQuote()),
+    removeQuote: (id: number) => dispatch(removeQuote(id)),
+    fetchCharacters: () => dispatch(fetchCharacters()),
+  };
 };
 
 //ВАЖНО: если используем в компоненте redux, то экспортируем не сам компонента, а вот этот коннект

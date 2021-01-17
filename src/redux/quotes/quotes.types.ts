@@ -18,7 +18,7 @@ export interface QuoteStateInterface {
 export interface QuoteInterface {
   id: number;
   text: string;
-  updated: string;
-  created: string;
+  updated?: string;
+  created?: string;
   author: CharacterInterface;
 }

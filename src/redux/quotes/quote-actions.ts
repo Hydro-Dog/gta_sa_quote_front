@@ -46,10 +46,11 @@ export const uploadQuoteFailure = (err: any) => {
 };
 
 export const uploadQuote = (quote: QuoteInterface) => {
+  console.log("uploadQuote quote: ", quote);
   return (dispatch: any) => {
     dispatch(uploadQuoteRequest());
     axios
-      .post(`http://localhost:5000/api/quote`)
+      .post(`http://localhost:5000/api/quote`, quote)
       .then((res: any) => {
         const quote = res.data;
         dispatch(uploadQuoteSuccess(quote));
